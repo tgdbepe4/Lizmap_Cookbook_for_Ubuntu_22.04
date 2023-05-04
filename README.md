@@ -1,0 +1,1 @@
+# Lizmap_Cookbook_for_Ubuntu_22.04
