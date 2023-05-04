@@ -33,6 +33,15 @@ Must accept to use ONLY Ubuntu 22.04 LTS server with it.
 - The last QGIS and QGIS server versions are installed. At the moment version 3.30.
 - A running Lizmap installation with the demo projects as well.
 
+## The 000-default.conf apache2 configuration file
+Consist of all necessary parameters to properly run qgis-server on apache2
+
+## Install_QGIS-Server_3_28_Lizmap_3_6_3_auf_Ubuntu_22_04_V1.txt
+Installation script to run an installation with QGIS und QGIS-Server 3.28
+
+## Install_QGIS-Server_3_30_Lizmap_3_6_3_auf_Ubuntu_22_04_V1.txt
+Installation script to run an installation with QGIS und QGIS-Server 3.30
+
 ## Adaption
 - Enhanced linux users should be able to adapt the script for any other Ubuntu oder Debian version. Important is the OS is fresh and native which mean that python3 or php an so is not already installed.
 
