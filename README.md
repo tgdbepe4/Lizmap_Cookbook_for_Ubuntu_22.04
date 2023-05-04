@@ -43,6 +43,6 @@ Installation script to run an installation with QGIS und QGIS-Server 3.28
 Installation script to run an installation with QGIS und QGIS-Server 3.30
 
 ## Adaption
-- Enhanced linux users should be able to adapt the script for any other Ubuntu oder Debian version. Important is the OS is fresh and native which mean that python3 or php an so is not already installed.
+Enhanced linux users should be able to adapt the script for any other Ubuntu oder Debian version. Important is the OS is fresh and native which mean that python3 or php an so is not already installed.
 
 
