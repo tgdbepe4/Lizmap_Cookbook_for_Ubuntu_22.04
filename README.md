@@ -33,3 +33,6 @@ Must accept to use ONLY Ubuntu 22.04 LTS server with it.
 - The last QGIS and QGIS server versions are installed. At the moment version 3.30.
 - A running Lizmap installation with the demo projects as well.
 
+## Adaption
+- Enhanced linux users should be able to adapt the script for any other Ubuntu oder Debian version. Important is the OS is fresh and native which mean that python3 or php an so is not alread insalled.
+
