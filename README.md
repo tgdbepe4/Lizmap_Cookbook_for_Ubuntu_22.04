@@ -2,7 +2,7 @@
 
 This documentation has the aim to enable Lizmap installers to get a properly running Lizmap installation which easy can extend and re configured. And this as simple as possible.
 
-**The only constraint is the willing to use Ubuntu 22.04 LTS as OS.**
+**The only constraint is to use Ubuntu 22.04 LTS as OS.**
 
 Lizmap installation is always tricky and a lot of people have much problems. Often so much that they giving up.
 
