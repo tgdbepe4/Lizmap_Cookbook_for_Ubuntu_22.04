@@ -1,1 +1,2 @@
-
+# This script is for a Lizmap installation on a Windows 11 system using WSL with an Ubuntu 22.04.
+# ATTENTION: This is under construction!
