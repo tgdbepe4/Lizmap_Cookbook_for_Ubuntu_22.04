@@ -176,6 +176,7 @@ sudo qgis-plugin-manager list
 # Rechte und Dateibesitzer neu setzen
 sudo chmod 755 /usr/lib/qgis/plugins/ -R
 sudo chown www-data:www-data /usr/lib/qgis/plugins/ -R
+sudo qgis-plugin-manager list
 sudo service apache2 reload
 
 ---------------------------------------------------------------------
