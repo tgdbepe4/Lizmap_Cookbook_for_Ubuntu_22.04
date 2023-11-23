@@ -33,15 +33,13 @@ sudo DEBIAN_FRONTEND=noninteractive apt -yq install xrdp
 # dpkg --print-architecture
 
 #QGIS-User qgis anlegen
-sudo adduser qgis
-quietly add a user without password
+# quietly add a user without password
 adduser --quiet --disabled-password --shell /bin/bash --home /home/qgis --gecos "User" qgis
 # set password
 echo "qgis:EwhwXuav4R9iMJ3iqnbg" | chpasswd
 
 #QGIS-User tgdbepe4 anlegen
-sudo adduser tgdbepe4
-quietly add a user without password
+# quietly add a user without password
 adduser --quiet --disabled-password --shell /bin/bash --home /home/tgdbepe4 --gecos "User" tgdbepe4
 # set password
 echo "tgdbepe4:EwhwXuav4R9iMJ3iqnbg" | chpasswd
