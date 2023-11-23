@@ -224,4 +224,6 @@ sudo lizmap/install/set_rights.sh www-data www-data
 cd /var/www/html/lizmap/lizmap/install
 ./demo.sh install
 
+sudo chown -R www-data:www-data /var/www.html
+
 # Nun im Browser Lizmap aufrufen, http://LOKALE-IP-ADRESSE/lizmap/lizmap/www/
