@@ -6,6 +6,11 @@
 # Einfach den ganzen Inhalt mit Copy and Paste in ein Terminal- oder Konsolen-Fenster kopieren und 
 # mit root-Rechten RETURN ausführen. Falls das System sich dabei meldet alle Fragen mit JA beantworten.
 #
+# After new installation of Ubuntu-Server (22.04 LTS)
+# The aim of this script is to have after running all the commands a working Lizmap installation 
+# which can be easily extend or adapted.
+# 
+# Günter Wagner und Peter Berger, 2023
 
 # System Update
 sudo DEBIAN_FRONTEND=noninteractive apt update -y
