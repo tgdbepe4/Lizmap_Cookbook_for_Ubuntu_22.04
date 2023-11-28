@@ -202,8 +202,10 @@ cd /var/www/html
 sudo wget https://github.com/3liz/lizmap-web-client/releases/download/3.7.0-beta.1/lizmap-web-client-3.7.0-beta.1.zip
 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install unzip
-sudo unzip lizmap-web-client-3.7.0-beta.1.zip
-sudo mv lizmap-web-client-3.7.0-beta.1 lizmap
+#sudo unzip lizmap-web-client-3.7.0-beta.1.zip
+sudo unzip lizmap-web-client-4.0.1.zip
+#sudo mv lizmap-web-client-3.7.0-beta.1 lizmap
+sudo mv lizmap-web-client-4.0.1 lizmap
 cd lizmap
 sudo lizmap/install/set_rights.sh www-data www-data
 cd lizmap/var/config
