@@ -61,11 +61,13 @@ sudo chown www-data:www-data /var/log/qgis
 
 sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 
+
 # /etc/apt/sources.list.d/qgis.sources anlegen mit:
+# in line below URIs: https://qgis.org/ubuntu-ltr is for the latest LTR version and URIs: https://qgis.org/ubuntu for the newest version
 sudo sh -c \
 "echo \
 'Types: deb deb-src
-URIs: https://qgis.org/ubuntu
+URIs: https://qgis.org/ubuntu-ltr
 Suites: jammy
 Architectures: amd64
 Components: main
