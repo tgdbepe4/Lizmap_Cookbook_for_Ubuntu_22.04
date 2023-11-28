@@ -230,5 +230,7 @@ cd /var/www/html/lizmap/lizmap/install
 
 # The files in the content path for Apache2 should have the owner and group www-data
 sudo chown -R www-data:www-data /var/www/html
+# Eventually
+# sudo chmod -R a+rw /var/www/html
 
 # Nun im Browser Lizmap aufrufen, http://LOKALE-IP-ADRESSE/lizmap/lizmap/www/
