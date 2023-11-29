@@ -20,6 +20,10 @@ sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
 sudo apt install ttf-mscorefonts-installer
 sudo fc-cache -f
 
+# If you like to add additional truetype fonts just copy the complete folder with 
+# the fonts in it to "/usr/share/fonts/truetype"
+# This path is the valid for Ubuntu (22.04) truetype fonts "/usr/share/fonts/truetype"
+
 # Ubuntu GUI Installation
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install ubuntu-gnome-desktop
 
