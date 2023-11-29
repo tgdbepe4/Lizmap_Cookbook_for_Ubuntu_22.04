@@ -234,3 +234,4 @@ sudo chown -R www-data:www-data /var/www/html
 # sudo chmod -R a+rw /var/www/html
 
 # Nun im Browser Lizmap aufrufen, http://LOKALE-IP-ADRESSE/lizmap/lizmap/www/
+# Now in QGIS Desktop LTR, 2.28.13 at the moment, the Lizmap plugin installing 4.0.1 at the moment. 
