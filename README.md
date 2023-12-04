@@ -36,11 +36,11 @@ Reasons for this are that so many differnet instances must interwork.
 ## The 000-default.conf apache2 configuration file
 Consist of all necessary parameters to properly run qgis-server on apache2.
 
-## Install_QGIS-Server_3_28_Lizmap_3_6_3_auf_Ubuntu_22_04_V1.txt
-Installation script to run an installation with QGIS und QGIS-Server 3.28.
+## Install_QGIS-Server_3_28.13_Lizmap_3_6_8_auf_Ubuntu_22_04_V1.txt
+Installation script to run an installation with QGIS und QGIS-Server 3.28.13
 
 ## Install_QGIS-Server_3.28.13_Lizmap_3.7.0-beta.1_auf_Ubuntu_22_04_V1.txt
-Installation script to run an installation with QGIS und QGIS-Server 3.30.
+Installation script to run an installation with QGIS und QGIS-Server 3.30.13
 
 ## Adaption
 Enhanced linux users should be able to adapt the script for any other Ubuntu oder Debian version. Important is the OS is fresh and native which mean that python3 or php an so is not already installed.
