@@ -39,7 +39,7 @@ Consist of all necessary parameters to properly run qgis-server on apache2.
 ## Install_QGIS-Server_3_28_Lizmap_3_6_3_auf_Ubuntu_22_04_V1.txt
 Installation script to run an installation with QGIS und QGIS-Server 3.28.
 
-## Install_QGIS-Server_3_30_Lizmap_3_6_3_auf_Ubuntu_22_04_V1.txt
+## Install_QGIS-Server_3.28.13_Lizmap_3.7.0-beta.1_auf_Ubuntu_22_04_V1.txt
 Installation script to run an installation with QGIS und QGIS-Server 3.30.
 
 ## Adaption
