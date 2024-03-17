@@ -1,20 +1,21 @@
-# Nach Neu-Installation Ubuntu-Server (22.04 LTS)
-# Ziel diese Scripts ist auf Ubuntu 22.04 oder höher nach Ausführung aller Befehle 
-# eine funktionierende Lizmap-Installation zur Verfügung zu haben, die dann leicht angepasst und erweitert werden kann.
-# Günter Wagner und Peter Berger, 2023
-#
-# Einfach den ganzen Inhalt mit Copy and Paste in ein Terminal- oder Konsolen-Fenster kopieren und 
-# mit root-Rechten RETURN ausführen. Falls das System sich dabei meldet alle Fragen mit JA beantworten.
+# After reinstalling Ubuntu server (22.04 LTS)
+# Target these scripts is on Ubuntu 22.04 or later after executing all commands 
+# to have a working Lizmap installation available, which can then be easily customized and extended.
 #
 # After new installation of Ubuntu-Server (22.04 LTS)
 # The aim of this script is to have after running all the commands a working Lizmap installation 
 # which can be easily extend or adapted.
 # 
-# Günter Wagner und Peter Berger, 2023
+# Simply copy and paste the entire content into a terminal or console window and 
+# with root privileges to execute RETURN. If the system responds, answer all questions with YES.
+#
+# Peter Berger, 2023, with input from Günter Wagner
 
 # System Update
 sudo DEBIAN_FRONTEND=noninteractive apt update -y
 sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
+
+# Answer all questions with YES (use TAB to jump to the OK field)
 
 # Windows Arial Fonts
 sudo apt install ttf-mscorefonts-installer
@@ -27,36 +28,36 @@ sudo fc-cache -f
 # Ubuntu GUI Installation
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install ubuntu-gnome-desktop
 
-# Für Remote-Zugang auf System via Remote Desktop. Dafür muss man idealerweise einen SSH-Tunnel aufbauen.
-# Die Terminalsoftware Putty eignet sich sehr gut dafür.
-# Auf MS Windows kann man dafür ein Batchfile erstellen:
-#   cd C:\Program Files (x86)\PuTTY
-#   start putty.exe -load "user@IP-ADRESSE" USER@IP-ADRESSE -P 22 -pw PASSWORD -L LOCAL-IP-ADRESSE:3387:REMOTE-IP-ADRESSE:3389 
-#   exit
+# For remote desktop access to system via Remote Desktop. Ideally, you need to build an SSH tunnel for this.
+# The terminal software Putty is very suitable for this.
+# On MS Windows you can create a batch file for this:
+# cd C:\Program Files (x86)\PuTTY
+# start putty.exe -load "user@IP ADDRESS" USER@IP ADDRESS -P 22 -pw PASSWORD -L LOCAL IP ADDRESS:3387:REMOTE IP ADDRESS:3389 
+# exit
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install xrdp
 # sudo systemctl restart xrdp 
 # sudo systemctl status xrdp 
 
-# Prozessor-Architektur Herausfinden, wenn Probleme
+# Processor Architecture Figuring Out When Problems
 # dpkg --print-architecture
 
-#QGIS-User qgis anlegen
+Creating #QGIS user qgis
 # quietly add a user without password
 adduser --quiet --disabled-password --shell /bin/bash --home /home/qgis --gecos "User" qgis
 # set password
 echo "qgis:EwhwXuav4R9iMJ3iqnbg" | chpasswd
 
-#QGIS-User tgdbepe4 anlegen
+Create #QGIS-User tgdbepe4
 # quietly add a user without password
 adduser --quiet --disabled-password --shell /bin/bash --home /home/tgdbepe4 --gecos "User" tgdbepe4
 # set password
 echo "tgdbepe4:EwhwXuav4R9iMJ3iqnbg" | chpasswd
 
 sudo mkdir -p /home/qgis/qgisserverdb
-# HOME-Verzeichnis auf Benutzer und Gruppe "www-data" setzen:
+# Set HOME directory to user and group "www-data":
 sudo chown www-data:www-data -R /home/qgis
 
-# Verzeichniss für log-Dateien anlegen
+# Create directory for log files
 sudo mkdir -p /var/log/qgis/
 sudo chown www-data:www-data /var/log/qgis
 
@@ -66,7 +67,7 @@ sudo chown www-data:www-data /var/log/qgis
 sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 
 
-# /etc/apt/sources.list.d/qgis.sources anlegen mit:
+# /etc/apt/sources.list.d/qgis.sources with:
 # in line below URIs: https://qgis.org/ubuntu-ltr is for the latest LTR version and URIs: https://qgis.org/ubuntu for the newest version
 sudo sh -c \
 "echo \
@@ -78,7 +79,7 @@ Components: main
 Signed-By: /etc/apt/keyrings/qgis-archive-keyring.gpg' \
 > /etc/apt/sources.list.d/qgis.sources"
 
-# QGIS-Server + Apache +  ... installieren
+# QGIS Server + Apache + ... install
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install python3-qgis -y
 sudo apt update -y
 sudo apt upgrade -y
@@ -92,7 +93,7 @@ sudo a2enmod rewrite
 # Install xvfb:
 # sudo apt-get install xvfb
 
-#  Create the service file:
+# Create the service file:
 # sudo sh -c \
 # "echo \
 # '[Unit]
@@ -103,7 +104,7 @@ sudo a2enmod rewrite
 # ExecStart=/usr/bin/Xvfb :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
 
 # [Install]
-# WantedBy=multi-user.target' \
+#WantedBy=multi-user.target' \
 # > /etc/systemd/system/xvfb.service"
  
 # Enable, start and check the status of the xvfb.service:
@@ -115,10 +116,10 @@ sudo a2enmod rewrite
 sudo a2enmod fcgid
 sudo a2enconf serve-cgi-bin
 
-# Apache: vor QGIS-Server-Test!
-# siehe 000-default_conf.txt
+# Apache: before QGIS server test!
+# see 000-default_conf.txt
 cd /etc/apache2/sites-available
-#000-default.conf Muster kopieren + .conf für ersten Test
+#000-default.conf Copy pattern + .conf for first test
 mv 000-default.conf 000-default.conf.sav
 wget https://raw.githubusercontent.com/tgdbepe4/Lizmap_Cookbook_for_Ubuntu_22.04/main/000-default.conf
 
@@ -127,31 +128,31 @@ sudo service apache2 restart
 
 #Check QGIS Server version (optional) 
 sudo apt-cache policy qgis-server
-# testen, ob QGIS-Server läuft:
+# Test if QGIS server is running:
 /usr/lib/cgi-bin/qgis_mapserv.fcgi
 
-# Test ob QGIS-Server läuft:
-# lynx "http://LOKALE-IP-ADRESSE/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities"
+# Test if QGIS server is running:
+# Lynx "http://LOKALE-IP-ADRESSE/cgi-bin/qgis_mapserv.fcgi?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities"
 
 
-### certbot installieren:
+### Install Certbot:
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install certbot python3-certbot-apache
 
-# Zertifikat erzeugen:
+# Generate certificate:
 # sudo certbot --apache -d DNS-RECORD
 
-### für Lizmap installieren (von https://docs.3liz.com/en/install/linux.html)
-# php-Version erkennen:
+### for Lizmap install (from https://docs.3liz.com/en/install/linux.html)
+# php version:
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install php
 sudo php -version -y
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install xauth htop curl libapache2-mod-fcgid libapache2-mod-php8.1 php8.1 php8.1-fpm php8.1-cli php8.1-cgi php8.1-bz2 php8.1-intl php8.1-mbstring php8.1-gd php8.1-sqlite3 php8.1-pgsql php8.1-curl php8.1-dom php8.1-xmlrpc php8.1-ldap php8.1-sqlite3 software-properties-common -y
 
 #configure locales
-sudo DEBIAN_FRONTEND=noninteractive locale-gen de_DE.UTF-8
-sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales   # z.Zt. unverändert
+sudo DEBIAN_FRONTEND=noninteractive locale-gen de_DE. UTF-8
+sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales # currently unchanged
 
 
-# Apache Module laden
+# Load Apache Modules
 sudo a2enmod actions
 sudo a2enmod fcgid	
 sudo a2enmod ssl
@@ -163,17 +164,17 @@ sudo systemctl reload apache2
 
 -----------------------------------------------------------------------------------------
 
-# QGIIS-Server Plugin:
-# Plugin Pfad
+# QGIIS Server Plugin:
+# Plugin Path
 cd /usr/lib/qgis/plugins
 
-# python3-pip installieren
+# Install python3-pip
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install python3-pip
 
-# Installation QGIS-Plugin Manager
+# Installation QGIS Plugin Manager
 sudo pip3 install qgis-plugin-manager
 
-# erstmalig initialisieren
+# initialize for the first time
 sudo qgis-plugin-manager init
 
 sudo qgis-plugin-manager update
@@ -186,7 +187,7 @@ sudo qgis-plugin-manager upgrade
 
 sudo qgis-plugin-manager list
 
-# Rechte und Dateibesitzer neu setzen
+# Reset rights and file owners
 sudo chmod 755 /usr/lib/qgis/plugins/ -R
 sudo chown www-data:www-data /usr/lib/qgis/plugins/ -R
 sudo qgis-plugin-manager list
@@ -194,15 +195,14 @@ sudo service apache2 reload
 
 ---------------------------------------------------------------------
 
-### Lizmap-Client installieren:  Download:
+### Install Lizmap Client: Download:
 
 # https://github.com/3liz/lizmap-web-client
 
-
-# ZIP-File unter /var/www/html  kopieren und entpacken:
-# unzip installieren
+# Copy and unzip the ZIP file under /var/www/html:
+# install unzip
 cd /var/www/html
-# Die Lizmap-Version kann sich ändern
+# The Lizmap version is subject to change
 # sudo wget https://packages.3liz.org/pub/lizmap/release/3.7/lizmap-web-client-3.7.5.zip
 sudo wget https://packages.3liz.org/pub/lizmap/release/3.7/lizmap-web-client-3.7.5.zip
 
@@ -211,25 +211,25 @@ sudo unzip lizmap-web-client-3.7.5.zip
 
 sudo mv lizmap-web-client-3.7.5 lizmap
 
-cd lizmap
+CD Lizmap
 sudo lizmap/install/set_rights.sh www-data www-data
 cd lizmap/var/config
 sudo cp profiles.ini.php.dist profiles.ini.php
 sudo cp lizmapConfig.ini.php.dist lizmapConfig.ini.php
 sudo cp localconfig.ini.php.dist localconfig.ini.php
 
-# Demo Projektinstallieren
+# Demo Project Install
 sudo echo " " >> localconfig.ini.php
 sudo echo "[modules]" >> localconfig.ini.php
 sudo echo "lizmap.installparam=demo" >> localconfig.ini.php
 
-cd ../../..
+compact disc.. /.. /..
 
-# eigentliche Lizmap-Installation
+# Actual Lizmap installation
 sudo php lizmap/install/configurator.php
 sudo php lizmap/install/installer.php
 sudo lizmap/install/set_rights.sh www-data www-data
-# Nun QGIS Projekte nach /var/www/html/lizmap/install kopieren
+# Now copy QGIS projects to /var/www/html/lizmap/install
 cd /var/www/html/lizmap/lizmap/install
 ./demo.sh install
 
@@ -238,5 +238,5 @@ sudo chown -R www-data:www-data /var/www/html
 # Eventually
 # sudo chmod -R a+rw /var/www/html
 
-# Nun im Browser Lizmap aufrufen, http://LOKALE-IP-ADRESSE/lizmap/lizmap/www/
-# Now in QGIS Desktop LTR, 2.28.13 at the moment, the Lizmap plugin installing 4.0.1 at the moment. 
+# Now open Lizmap in the browser, http://LOKALE-IP-ADRESSE/lizmap/lizmap/www/
+# Now in QGIS Desktop LTR, 2.28.13 at the moment, the Lizmap plugin installing 4.0.1 at the moment.
