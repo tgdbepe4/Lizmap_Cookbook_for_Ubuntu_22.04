@@ -1,4 +1,4 @@
-# After proper installing Ubuntu server (22.04 LTS)
+top# After proper installing Ubuntu server (22.04 LTS)
 # Target of these scripts is on Ubuntu 22.04 or maybe later to have after executing all commands 
 # a working Lizmap installation available, which can then be easily customized and extended.
 #
@@ -21,7 +21,7 @@ sudo fc-cache -f
 # the fonts in it to "/usr/share/fonts/truetype"
 # This path is the valid for Ubuntu (22.04) truetype fonts "/usr/share/fonts/truetype"
 
-# Ubuntu GUI Installation
+# Ubuntu GUI Desktop Installation
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install ubuntu-gnome-desktop
 
 # For remote desktop access to system via Remote Desktop. Ideally, you need to build an SSH tunnel for this.
