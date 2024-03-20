@@ -1,15 +1,11 @@
-# After reinstalling Ubuntu server (22.04 LTS)
-# Target these scripts is on Ubuntu 22.04 or later after executing all commands 
-# to have a working Lizmap installation available, which can then be easily customized and extended.
+# After proper installing Ubuntu server (22.04 LTS)
+# Target of these scripts is on Ubuntu 22.04 or maybe later to have after executing all commands 
+# a working Lizmap installation available, which can then be easily customized and extended.
 #
-# After new installation of Ubuntu-Server (22.04 LTS)
-# The aim of this script is to have after running all the commands a working Lizmap installation 
-# which can be easily extend or adapted.
-# 
-# Simply copy and paste the entire content into a terminal or console window and 
-# with root privileges to execute RETURN. If the system responds, answer all questions with YES.
+# Simply copy and paste the entire content or part by part into a terminal or console window  
+# with root privileges to execute with RETURN. If the system responds, answer all questions with YES!
 #
-# Peter Berger, 2023, with input from Günter Wagner
+# Peter Berger, 2024, with many inputs from Günter Wagner
 
 # System Update
 sudo DEBIAN_FRONTEND=noninteractive apt update -y
