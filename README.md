@@ -30,13 +30,13 @@ Reasons for this are that so many differnet instances must interwork.
 - The ubuntu-gnome-desktop GUI
 - A running remote desktop server, RDP.
 - Apache 2 running with all for qgis-server and lizmap necessary additions.
-- **The last QGIS and QGIS server versions are installed. At the moment version 3.30.**
+- **The last QGIS and QGIS server versions are installed. At the moment version 3.34**
 - **A running Lizmap installation with the demo projects as well.**
 
 ## The 000-default.conf apache2 configuration file
 Consist of all necessary parameters to properly run qgis-server on apache2.
 
-## Install_QGIS-Server_3.28.13_Lizmap_3.7.5_Ubuntu_22_04_V1.txt
+## Install_QGIS-Server_3.34_Lizmap_3.7.5_Ubuntu_22_04_V1.txt
 Installation script to run an installation with QGIS und QGIS-Server 3.34
 
 ## Adaption
