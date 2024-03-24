@@ -1,4 +1,4 @@
-top# After proper installing Ubuntu server (22.04 LTS)
+# After proper installing Ubuntu server (22.04 LTS)
 # Target of these scripts is on Ubuntu 22.04 or maybe later to have after executing all commands 
 # a working Lizmap installation available, which can then be easily customized and extended.
 #
