@@ -39,7 +39,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt -yq install xrdp
 
 # Creating QGIS user qgis
 # quietly add a user without password
-adduser --quiet --disabled-password --shell /bin/bash --home /home/qgis --gecos "User" qgis
+sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/qgis --gecos "User" qgis
 # set password
 echo "qgis:EwhwXuav4R9iMJ3iqnbg" | chpasswd
 
