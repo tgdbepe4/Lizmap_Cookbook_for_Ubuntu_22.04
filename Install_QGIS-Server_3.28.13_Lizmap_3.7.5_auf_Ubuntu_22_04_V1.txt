@@ -113,6 +113,10 @@ cd /etc/apache2/sites-available
 mv 000-default.conf 000-default.conf.sav
 wget https://raw.githubusercontent.com/tgdbepe4/Lizmap_Cookbook_for_Ubuntu_22.04/main/000-default.conf
 
+# Copy an example postgres service file to the configued place in the qgis user home folder
+cd /home/qgis
+wget https://raw.githubusercontent.com/tgdbepe4/Lizmap_Cookbook_for_Ubuntu_22.04/main/.pg_service.conf
+
 sudo service apache2 restart
   
 #Check QGIS Server version (optional) 
