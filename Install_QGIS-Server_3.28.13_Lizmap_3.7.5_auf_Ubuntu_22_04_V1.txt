@@ -203,7 +203,6 @@ sudo unzip lizmap-web-client-3.7.5.zip
 
 sudo mv lizmap-web-client-3.7.5 lizmap
 
-CD Lizmap
 sudo lizmap/install/set_rights.sh www-data www-data
 cd lizmap/var/config
 sudo cp profiles.ini.php.dist profiles.ini.php
