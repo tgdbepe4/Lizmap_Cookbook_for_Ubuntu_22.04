@@ -221,7 +221,7 @@ sudo php lizmap/install/configurator.php
 sudo php lizmap/install/installer.php
 sudo lizmap/install/set_rights.sh www-data www-data
 # Now copy QGIS projects to /var/www/html/lizmap/install
-cd /var/www/html/lizmap/lizmap/install
+cd lizmap/install
 ./demo.sh install
 
 # The files in the content path for Apache2 should have the owner and group www-data
