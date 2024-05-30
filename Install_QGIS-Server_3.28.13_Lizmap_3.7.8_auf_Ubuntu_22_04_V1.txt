@@ -202,7 +202,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt -yq install unzip
 sudo unzip lizmap-web-client-3.7.8.zip
 
 sudo mv lizmap-web-client-3.7.8 lizmap
-
+cd lizmap
 sudo lizmap/install/set_rights.sh www-data www-data
 cd lizmap/var/config
 sudo cp profiles.ini.php.dist profiles.ini.php
@@ -214,7 +214,7 @@ sudo echo " " >> localconfig.ini.php
 sudo echo "[modules]" >> localconfig.ini.php
 sudo echo "lizmap.installparam=demo" >> localconfig.ini.php
 
-compact disc.. /.. /..
+cd ../../..
 
 # Actual Lizmap installation
 sudo php lizmap/install/configurator.php
