@@ -195,7 +195,7 @@ sudo service apache2 reload
 # install unzip
 cd /var/www/html
 # The Lizmap version is subject to change
-sudo wget https://packages.3liz.org/pub/lizmap/release/3.7/lizmap-web-client-3.7.9.zip
+sudo wget https://packages.3liz.org/pub/lizmap/release/3.7/lizmap-web-client-3.7.10.zip
 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install unzip
 sudo unzip lizmap-web-client-3.7.9.zip
