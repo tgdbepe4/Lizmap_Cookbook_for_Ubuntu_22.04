@@ -201,7 +201,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt -yq install unzip
 sudo unzip lizmap-web-client-3.8.0.zip
 
 # Any folder can used instead of the lizmap folder, e.E. lizmapv1
-sudo mv lizmap-web-client-3.7.8 lizmap
+sudo mv lizmap-web-client-3.8.0 lizmap
 # But then you have to go to the desired folder instead of the lizmap folder
 cd lizmap
 sudo lizmap/install/set_rights.sh www-data www-data
