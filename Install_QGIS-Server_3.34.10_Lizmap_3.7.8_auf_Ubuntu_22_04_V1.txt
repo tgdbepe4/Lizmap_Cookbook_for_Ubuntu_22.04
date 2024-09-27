@@ -195,10 +195,10 @@ sudo service apache2 reload
 # install unzip
 cd /var/www/html
 # The Lizmap version is subject to change
-sudo wget https://packages.3liz.org/pub/lizmap/release/3.8/lizmap-web-client-3.8.0.zip
+sudo wget https://packages.3liz.org/pub/lizmap/release/3.8/lizmap-web-client-3.8.1.zip
 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install unzip
-sudo unzip lizmap-web-client-3.8.0.zip
+sudo unzip lizmap-web-client-3.8.1.zip
 
 # Any folder can used instead of the lizmap folder, e.E. lizmapv1
 sudo mv lizmap-web-client-3.8.0 lizmap
