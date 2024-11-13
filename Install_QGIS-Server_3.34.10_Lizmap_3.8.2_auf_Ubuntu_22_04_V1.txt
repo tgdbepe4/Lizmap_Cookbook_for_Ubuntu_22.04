@@ -198,7 +198,7 @@ cd /var/www/html
 sudo wget https://packages.3liz.org/pub/lizmap/release/3.8/lizmap-web-client-3.8.3.zip
 
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install unzip
-sudo unzip lizmap-web-client-3.3.2.zip
+sudo unzip lizmap-web-client-3.8.3.zip
 
 # Any folder can used instead of the lizmap folder, e.E. lizmapv1
 sudo mv lizmap-web-client-3.8.3 lizmap
