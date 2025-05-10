@@ -1,0 +1,236 @@
+# After proper installing Ubuntu server (22.04 LTS)
+# Target of these scripts is on Ubuntu 22.04 or maybe later to have after executing all commands 
+# a working Lizmap installation available, which can then be easily customized and extended.
+#
+# Simply copy and paste the entire content or part by part into a terminal or console window  
+# with root privileges to execute with RETURN. If the system responds, answer all questions with YES!
+#
+# Peter Berger, 2024, with many inputs from Günter Wagner
+
+# System Update
+sudo DEBIAN_FRONTEND=noninteractive apt update -y
+sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y
+
+# Answer all questions with YES (use TAB to jump to the OK field)
+
+# Windows Arial Fonts
+sudo apt install ttf-mscorefonts-installer
+sudo fc-cache -f
+
+# If you like to add additional truetype fonts just copy the complete folder with 
+# the fonts in it to "/usr/share/fonts/truetype"
+# This path is the valid for Ubuntu (22.04) truetype fonts "/usr/share/fonts/truetype"
+
+# Ubuntu GUI Desktop Installation
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install ubuntu-gnome-desktop
+
+# For remote desktop access to system via Remote Desktop. Ideally, you need to build an SSH tunnel for this.
+# The terminal software Putty is very suitable for this.
+# On MS Windows you can create a batch file for this:
+# cd C:\Program Files (x86)\PuTTY
+# start putty.exe -load "user@IP ADDRESS" USER@IP ADDRESS -P 22 -pw PASSWORD -L LOCAL IP ADDRESS:3387:REMOTE IP ADDRESS:3389 
+# exit
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install xrdp
+# sudo systemctl restart xrdp 
+# sudo systemctl status xrdp 
+
+# Processor Architecture Figuring Out When Problems
+# dpkg --print-architecture
+
+# Creating QGIS user qgis
+# quietly add a user without password
+sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/qgis --gecos "User" qgis
+# set password
+sudo echo "qgis:EwhwXuav4R9iMJ3iqnbg" | chpasswd
+
+sudo mkdir -p /home/qgis/qgisserverdb
+# Set HOME directory to user and group "www-data":
+sudo chown www-data:www-data -R /home/qgis
+
+# Create directory for log files
+sudo mkdir -p /var/log/qgis/
+sudo chown www-data:www-data /var/log/qgis
+
+# For Ubuntu 20.04 un comment the next line
+# sudo mkdir -m755 -p /etc/apt/keyrings
+
+sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+
+
+# /etc/apt/sources.list.d/qgis.sources with:
+# in line below URIs: https://qgis.org/ubuntu-ltr is for the latest LTR version and URIs: https://qgis.org/ubuntu for the newest version
+sudo sh -c \
+"echo \
+'Types: deb deb-src
+URIs: https://qgis.org/debian
+Suites: your-distributions-codename
+Architectures: amd64
+Components: main
+Signed-By: /etc/apt/keyrings/qgis-archive-keyring.gpg
+' \
+> /etc/apt/sources.list.d/qgis.sources"
+
+# QGIS Server + Apache + ... install
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install python3-qgis -y
+sudo apt update -y
+sudo apt upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install qgis qgis-server --no-install-recommends --no-install-suggests -y
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install libapache2-mod-fcgid -y
+
+# sudo /usr/bin/sleep 5
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install apache2
+sudo a2enmod rewrite
+
+# Install xvfb:
+# sudo apt-get install xvfb
+
+# Create the service file:
+# sudo sh -c \
+# "echo \
+# '[Unit]
+# Description=X Virtual Frame Buffer Service
+# After=network.target
+
+# [Service]
+# ExecStart=/usr/bin/Xvfb :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+
+# [Install]
+#WantedBy=multi-user.target' \
+# > /etc/systemd/system/xvfb.service"
+ 
+# Enable, start and check the status of the xvfb.service:
+# sudo systemctl enable xvfb.service
+# sudo systemctl start xvfb.service
+# sudo systemctl status xvfb.service
+
+# enable fcgid
+sudo a2enmod fcgid
+sudo a2enconf serve-cgi-bin
+
+# Apache: before QGIS server test!
+# see 000-default_conf.txt
+cd /etc/apache2/sites-available
+#000-default.conf Copy pattern + .conf for first test
+mv 000-default.conf 000-default.conf.sav
+wget https://raw.githubusercontent.com/tgdbepe4/Lizmap_Cookbook_for_Ubuntu_22.04/main/000-default.conf
+
+# Copy an example postgres service file to the configued place in the qgis user home folder
+cd /home/qgis
+wget https://raw.githubusercontent.com/tgdbepe4/Lizmap_Cookbook_for_Ubuntu_22.04/main/.pg_service.conf
+
+sudo service apache2 restart
+  
+#Check QGIS Server version (optional) 
+sudo apt-cache policy qgis-server
+# Test if QGIS server is running:
+/usr/lib/cgi-bin/qgis_mapserv.fcgi
+
+# Test if QGIS server is running:
+# Lynx "http://LOKALE-IP-ADRESSE/cgi-bin/qgis_mapserv.fcgi SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities"
+
+### Install Certbot:
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install certbot python3-certbot-apache
+
+# Generate certificate:
+# sudo certbot --apache -d DNS-RECORD
+
+### for Lizmap install (from https://docs.3liz.com/en/install/linux.html)
+# php version:
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install php
+sudo php -version -y
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install xauth htop curl libapache2-mod-fcgid libapache2-mod-php8.3 php8.3 php8.3-fpm php8.3-cli php8.3-cgi php8.3-bz2 php8.3-intl php8.3-mbstring php8.3-gd php8.3-sqlite3 php8.3-pgsql php8.3-curl php8.3-dom php8.3-xmlrpc php8.3-ldap php8.3-sqlite3 software-properties-common -y
+#configure locales
+sudo DEBIAN_FRONTEND=noninteractive locale-gen de_DE.UTF-8
+sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales # currently unchanged
+
+
+# Load Apache Modules
+sudo a2enmod actions
+sudo a2enmod fcgid	
+sudo a2enmod ssl
+sudo a2enmod rewrite
+sudo a2enmod headers
+sudo a2enmod deflate
+
+sudo systemctl reload apache2
+
+-----------------------------------------------------------------------------------------
+
+# QGIIS Server Plugin:
+# Plugin Path
+cd /usr/lib/qgis/plugins
+
+# Install python3-pip
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install python3-pip
+
+# Installation QGIS Plugin Manager
+sudo pip3 install qgis-plugin-manager
+
+# initialize for the first time
+sudo qgis-plugin-manager init
+
+sudo qgis-plugin-manager update
+
+sudo qgis-plugin-manager install "Lizmap server"
+sudo qgis-plugin-manager install atlasprint
+sudo qgis-plugin-manager install wfsOutputExtension
+
+sudo qgis-plugin-manager upgrade
+
+sudo qgis-plugin-manager list
+
+# Reset rights and file owners
+sudo chmod 755 /usr/lib/qgis/plugins/ -R
+sudo chown www-data:www-data /usr/lib/qgis/plugins/ -R
+sudo qgis-plugin-manager list
+sudo service apache2 reload
+
+---------------------------------------------------------------------
+
+### Install Lizmap Client: Download:
+
+# https://github.com/3liz/lizmap-web-client
+
+# Copy and unzip the ZIP file under /var/www/html:
+# install unzip
+cd /var/www/html
+# The Lizmap version is subject to change
+sudo wget https://packages.3liz.org/pub/lizmap/release/3.8/lizmap-web-client-3.8.3.zip
+
+sudo DEBIAN_FRONTEND=noninteractive apt -yq install unzip
+sudo unzip lizmap-web-client-3.8.3.zip
+
+# Any folder can used instead of the lizmap folder, e.E. lizmapv1
+sudo mv lizmap-web-client-3.8.3 lizmap
+# But then you have to go to the desired folder instead of the lizmap folder
+cd lizmap
+sudo lizmap/install/set_rights.sh www-data www-data
+cd lizmap/var/config
+sudo cp profiles.ini.php.dist profiles.ini.php
+sudo cp lizmapConfig.ini.php.dist lizmapConfig.ini.php
+sudo cp localconfig.ini.php.dist localconfig.ini.php
+
+# Demo Project Install
+sudo echo " " >> localconfig.ini.php
+sudo echo "[modules]" >> localconfig.ini.php
+sudo echo "lizmap.installparam=demo" >> localconfig.ini.php
+
+cd ../../../..
+
+
+
+# Actual Lizmap installation
+sudo php lizmap/install/configurator.php
+sudo php lizmap/install/installer.php
+sudo lizmap/install/set_rights.sh www-data www-data
+# Now copy QGIS projects to /var/www/html/lizmap/install
+cd lizmap/install
+./demo.sh install
+
+# The files in the content path for Apache2 should have the owner and group www-data
+sudo chown -R www-data:www-data /var/www/html
+# Eventually
+# sudo chmod -R a+rw /var/www/html
+
+# Now open Lizmap in the browser, http://LOKALE-IP-ADRESSE/lizmap/lizmap/www/
+# Now in QGIS Desktop LTR, 2.28.13 at the moment, the Lizmap plugin installing 4.0.1 at the moment.
