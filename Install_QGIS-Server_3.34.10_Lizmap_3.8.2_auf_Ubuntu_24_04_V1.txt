@@ -215,8 +215,7 @@ sudo echo " " >> localconfig.ini.php
 sudo echo "[modules]" >> localconfig.ini.php
 sudo echo "lizmap.installparam=demo" >> localconfig.ini.php
 
-cd ../../../..
-
+cd ../../..
 
 
 # Actual Lizmap installation
