@@ -155,6 +155,8 @@ sudo a2enmod deflate
 
 sudo systemctl reload apache2
 
+sudo apt install python3-pip
+
 -----------------------------------------------------------------------------------------
 
 # QGIIS Server Plugin:
