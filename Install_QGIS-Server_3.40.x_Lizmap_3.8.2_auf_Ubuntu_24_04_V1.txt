@@ -167,7 +167,10 @@ cd /usr/lib/qgis/plugins
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install python3-pip
 
 # Installation QGIS Plugin Manager
-sudo pip3 install qgis-plugin-manager
+# sudo pip3 install qgis-plugin-manager
+sudo apt install pipx
+pipx ensurepath
+sudo pipx install qgis-plugin-manager
 
 # initialize for the first time
 sudo qgis-plugin-manager init
