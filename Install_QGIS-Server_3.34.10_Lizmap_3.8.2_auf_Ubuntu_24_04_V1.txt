@@ -51,6 +51,7 @@ sudo chown www-data:www-data -R /home/qgis
 sudo mkdir -p /var/log/qgis/
 sudo chown www-data:www-data /var/log/qgis
 
+# sudo apt install gnupg software-properties-common
 # For Ubuntu 20.04 un comment the next line
 # sudo mkdir -m755 -p /etc/apt/keyrings
 
@@ -63,7 +64,7 @@ sudo sh -c \
 "echo \
 'Types: deb deb-src
 URIs: https://qgis.org/debian
-Suites: your-distributions-codename
+Suites: noble
 Architectures: amd64
 Components: main
 Signed-By: /etc/apt/keyrings/qgis-archive-keyring.gpg
