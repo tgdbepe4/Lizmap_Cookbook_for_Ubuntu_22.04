@@ -76,7 +76,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt -yq install python3-qgis -y
 sudo apt update -y
 sudo apt upgrade -y
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install qgis qgis-server --no-install-recommends --no-install-suggests -y
-sudo DEBIAN_FRONTEND=noninteractive apt -yq install libapache2-mod-fcgid -y
+# sudo DEBIAN_FRONTEND=noninteractive apt -yq install libapache2-mod-fcgid -y
 
 # sudo /usr/bin/sleep 5
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install apache2
@@ -161,35 +161,46 @@ sudo apt install python3-pip
 
 # QGIIS Server Plugin:
 # Plugin Path
-cd /usr/lib/qgis/plugins
+# cd /usr/lib/qgis/plugins
+cd /srv/qgis/plugins
+
 
 # Install python3-pip
-sudo DEBIAN_FRONTEND=noninteractive apt -yq install python3-pip
+# sudo DEBIAN_FRONTEND=noninteractive apt -yq install python3-pip
 
 # Installation QGIS Plugin Manager
 # sudo pip3 install qgis-plugin-manager
 sudo apt install pipx
-pipx ensurepath
 sudo pipx install qgis-plugin-manager
+pipx ensurepath
 
-# initialize for the first time
-sudo qgis-plugin-manager init
+/root/.local/share/pipx/venvs/qgis-plugin-manager/bin/qgis-plugin-manager init
+/root/.local/share/pipx/venvs/qgis-plugin-manager/bin/qgis-plugin-manager update
+/root/.local/share/pipx/venvs/qgis-plugin-manager/bin/qgis-plugin-manager list
+/root/.local/share/pipx/venvs/qgis-plugin-manager/bin/qgis-plugin-manager install "Lizmap server"
+/root/.local/share/pipx/venvs/qgis-plugin-manager/bin/qgis-plugin-manager install atlasprint
+/root/.local/share/pipx/venvs/qgis-plugin-manager/bin/qgis-plugin-manager install wfsOutputExtension
+/root/.local/share/pipx/venvs/qgis-plugin-manager/bin/qgis-plugin-manager upgrade
+/root/.local/share/pipx/venvs/qgis-plugin-manager/bin/qgis-plugin-manager list
 
-sudo qgis-plugin-manager update
 
-sudo qgis-plugin-manager install "Lizmap server"
-sudo qgis-plugin-manager install atlasprint
-sudo qgis-plugin-manager install wfsOutputExtension
+# initialize for the first timesudo qgis-plugin-manager init
 
-sudo qgis-plugin-manager upgrade
+# sudo qgis-plugin-manager update
 
-sudo qgis-plugin-manager list
+# sudo qgis-plugin-manager install "Lizmap server"
+# sudo qgis-plugin-manager install atlasprint
+# sudo qgis-plugin-manager install wfsOutputExtension
+
+# sudo qgis-plugin-manager upgrade
+
+# sudo qgis-plugin-manager list
 
 # Reset rights and file owners
-sudo chmod 755 /usr/lib/qgis/plugins/ -R
-sudo chown www-data:www-data /usr/lib/qgis/plugins/ -R
-sudo qgis-plugin-manager list
-sudo service apache2 reload
+# sudo chmod 755 /usr/lib/qgis/plugins/ -R
+# sudo chown www-data:www-data /usr/lib/qgis/plugins/ -R
+# sudo qgis-plugin-manager list
+# sudo service apache2 reload
 
 ---------------------------------------------------------------------
 
