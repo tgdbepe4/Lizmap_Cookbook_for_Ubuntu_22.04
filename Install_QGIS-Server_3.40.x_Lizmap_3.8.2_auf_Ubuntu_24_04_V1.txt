@@ -127,7 +127,7 @@ sudo apt-cache policy qgis-server
 /usr/lib/cgi-bin/qgis_mapserv.fcgi
 
 # Test if QGIS server is running:
-# Lynx "http://LOKALE-IP-ADRESSE/cgi-bin/qgis_mapserv.fcgi SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities"
+# lynx "http://LOKALE-IP-ADRESSE/cgi-bin/qgis_mapserv.fcgi SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities"
 
 ### Install Certbot:
 sudo DEBIAN_FRONTEND=noninteractive apt -yq install certbot python3-certbot-apache
