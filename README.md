@@ -1,8 +1,11 @@
-# Lizmap_Cookbook_for_Ubuntu_22.04
+# Lizmap_Cookbook_for_Ubuntu
 
 This documentation has the aim to enable Lizmap installers to get a properly running Lizmap installation which easy can extend and re configured. And this as simple as possible.
 
-**The only constraint is to use Ubuntu 22.04 LTS as OS.**
+These scripts are foreseen for Ubuntu 22.04 and 24.04
+- Using differnet versions of Ubuntu require different ways to bing it alive. The main difference is that the qgis-plugins cannot installed with the normal python pip installer and instead pipx has to be used.
+
+
 
 Lizmap installation is always tricky and a lot of people have much problems. Often so much that they giving up.
 
