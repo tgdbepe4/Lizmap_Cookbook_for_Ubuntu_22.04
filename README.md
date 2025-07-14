@@ -50,9 +50,8 @@ Consist of all necessary parameters to properly run qgis-server on apache2.
 ## Install_QGIS-Server_3.34_Lizmap_3.8.1_Ubuntu_22_04_V1.txt
 Installation script to run an installation with QGIS und QGIS-Server 3.34
 
-## 
-Installation script to run an installation with QGIS und QGIS-Server 3.34
-
+## Install_QGIS-Server_3.40.x_Lizmap_3.9.0_auf_Ubuntu_24_04_V1.txt
+Installation script to run an installation with QGIS und QGIS-Server > 3.40
 
 ## Adaption
 Enhanced linux users should be able to adapt the script for any other Ubuntu oder Debian version. Important is the OS is fresh and native which mean that python3 or php an so is not already installed.
