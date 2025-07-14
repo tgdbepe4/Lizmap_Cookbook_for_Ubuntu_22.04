@@ -162,6 +162,9 @@ sudo apt install python3-pip
 # QGIIS Server Plugin:
 # Plugin Path
 # cd /usr/lib/qgis/plugins
+sudo mkdir /srv
+sudo mkdir /srv/qgis
+sudo mkdir /srv/qgis/plugins
 cd /srv/qgis/plugins
 
 
@@ -195,6 +198,9 @@ pipx ensurepath
 # sudo qgis-plugin-manager upgrade
 
 # sudo qgis-plugin-manager list
+
+sudo chown -R www-data /srv
+sudo chgrp -R www-data /srv
 
 # Reset rights and file owners
 # sudo chmod 755 /usr/lib/qgis/plugins/ -R
